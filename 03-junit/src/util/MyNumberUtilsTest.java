@@ -28,4 +28,16 @@ class MyNumberUtilsTest {
 		
 		assertFalse(actualValue);
 	}
+	
+	@Test
+	void structuredTest() {
+		// Setup
+		int valueToTest = 13;
+		
+		// Execute
+		boolean actualValue = numberUtils.isEven(valueToTest);
+		
+		// Check result		
+		assertFalse(actualValue);
+	}
 }
