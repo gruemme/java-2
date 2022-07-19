@@ -10,6 +10,7 @@ public class SuppressMain {
 		@SuppressWarnings("unused")
 		int i = 0;
 		System.out.println("Hallo");
+		NewClass c = new NewClass();
 	}
 	
 	@SuppressWarnings("unused")
