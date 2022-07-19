@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamsMain {
@@ -26,6 +27,7 @@ public class StreamsMain {
 			.forEach(System.out::println);
 		
 		List<String> nameOfCountriesInEurope = countries.stream()
+				.sorted((s1,s2) -> (int) (s1.getPopulation() - s2.getPopulation()))
 				.filter(c -> Continent.EUROPE.equals(c.getContient()))
 				.map(country -> country.getName())
 				.collect(Collectors.toList());
@@ -38,7 +40,20 @@ public class StreamsMain {
 				.count();
 		
 		System.out.println("numberOfCountriesWithPopulationOver1Million = " + numberOfCountriesWithPopulationOver1Million);
+	
 		
+		Optional<Country> australia = getFirstCountryInOceania(countries);
+		australia.ifPresent(c -> System.out.println(c.getPopulation()));		
 	}
-
+	
+	public static Optional<Country> getFirstCountryInOceania(List<Country> countries) {
+		
+		for(Country country : countries) {
+			if(Continent.OCEANIA.equals(country.getContient())) {
+				return Optional.of(country);
+			}
+		}
+		
+		return Optional.empty();
+	}
 }
